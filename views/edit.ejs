@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Blogging App</title>
+    <style>
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .animate-bounce-on-focus:focus {
+            animation: bounce 0.5s;
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen bg-gray-900 text-gray-200 flex flex-col items-center transition duration-500 ease-in-out p-6">
+    <div class="w-full flex justify-end mb-6">
+        <a href="/profile"
+            class="bg-red-500 text-white p-3 rounded-md hover:bg-red-600 cursor-pointer text-center">PROFILE</a>
+    </div>
+    <div class="w-full mb-6 text-center">
+        <h1 class="text-4xl font-bold text-gray-100 ">UPDATE THE POST</h1>
+    </div>
+    <div class="main w-full flex flex-wrap justify-center items-center p-4 mb-8">
+        <form action="/updatepost/<%= editpost._id %>" method="post"
+            class="bg-gray-800 p-6 rounded-lg shadow-lg w-full max-w-md">
+            <input type="text" name="title" placeholder="Enter your title" value="<%= editpost.title %>"
+                class="w-full p-3 mb-4 bg-gray-700 border border-gray-600 rounded-md text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-gray-600 transition duration-300 ease-in-out animate-bounce-on-focus">
+            <textarea name="text" placeholder="Enter your text"
+                class="resize-none w-full p-3 mb-4 bg-gray-700 border border-gray-600 rounded-md text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-gray-600 transition duration-300 ease-in-out h-32 animate-bounce-on-focus"><%= editpost.text %></textarea>
+            <input type="submit" value="UPDATE"
+                class="w-full bg-yellow-500 text-white p-3 rounded-md hover:bg-yellow-600 transition duration-300 ease-in-out cursor-pointer animate-bounce-on-focus">
+        </form>
+    </div>
+
+</body>
+
+</html>
