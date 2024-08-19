@@ -11,7 +11,7 @@ const app = express()
 const PORT = 8000
 
 app.set('view engine', 'ejs')
-app.set("views", path.resolve('./views'))
+app.set("views", path.resolve('views'))
 
 //Middlewares
 app.use(express.json())
