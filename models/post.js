@@ -3,9 +3,9 @@ const mongoose = require('mongoose')
 //schema
 
 const postSchema = new mongoose.Schema({
-    user:[{
+    user: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref:"user"
+        ref: "user"
     }],
     date: {
         type: Date,
@@ -21,11 +21,6 @@ const postSchema = new mongoose.Schema({
     }
 })
 
+const postModel = new mongoose.model("post", postSchema)
 
-// model
-const  postModel = new mongoose.model("post",  postSchema)
-
-
-module.exports =  postModel
-
-
+module.exports = postModel

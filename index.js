@@ -32,7 +32,7 @@ app.get('/signup', (req, res) => {
 
 app.get('/logout', (req, res) => {
     res.cookie("token", "")
-    res.redirect("/signup")
+    res.redirect("/")
 })
 
 app.post('/createuser', (req, res) => {

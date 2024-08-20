@@ -6,7 +6,6 @@ mongoose
     .then(() => { console.log("mongo connected") })
     .catch(() => { console.log("Connection error") })
 
-
 //schema
 
 const userSchema = new mongoose.Schema({
@@ -23,15 +22,12 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    posts:[{
+    posts: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref:"post"
+        ref: "post"
     }]
 })
 
-
-// model
 const userModel = new mongoose.model("user", userSchema)
-
 
 module.exports = userModel
