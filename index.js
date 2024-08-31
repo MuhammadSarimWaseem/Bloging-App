@@ -36,19 +36,26 @@ app.get('/logout', (req, res) => {
 })
 
 app.post('/createuser', (req, res) => {
-    const { name, email, password } = req.body
-    bcrypt.genSalt(10, (err, salt) => {
-        bcrypt.hash(password, salt, async (err, hash) => {
-            let user = await userModel.create({
-                name,
-                email,
-                password: hash
-            })
-            let token = jwt.sign({ email: email, userid: user._id }, process.env.SECRETKEY)
-            res.cookie("token", token)
-            res.redirect("/profile")
-        });
-    });
+    try {
+        const { name, email, password } = req.body
+        if (!name, !email, !password) {
+            res.send("Fill all the fields!")
+        }
+            bcrypt.genSalt(10, (err, salt) => {
+                bcrypt.hash(password, salt, async (err, hash) => {
+                    let user = await userModel.create({
+                        name,
+                        email,
+                        password: hash
+                    })
+                    let token = jwt.sign({ email: email, userid: user._id }, process.env.SECRETKEY)
+                    res.cookie("token", token)
+                    res.redirect("/profile")
+                });
+            });
+    } catch (err) {
+        res.status(500).send('Error creating user')
+    }
 })
 
 app.post('/deletepost/:id', isloggedin, async (req, res) => {
